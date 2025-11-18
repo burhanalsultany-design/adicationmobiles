@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>استبانة إدمان الهاتف وجودة النوم</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    margin: 20px;
+    line-height: 1.8;
+}
+.container{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    max-width:800px;
+    margin:auto;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+h2{
+    color:#333;
+    text-align:center;
+}
+label{
+    font-weight:bold;
+}
+.question{
+    margin-bottom:20px;
+    padding:10px;
+    background:#f1f1f1;
+    border-radius:8px;
+}
+button{
+    padding:10px 20px;
+    background:#4CAF50;
+    border:none;
+    color:#fff;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+button:hover{
+    background:#43a047;
+}
+.result{
+    margin-top:20px;
+    padding:15px;
+    background:#d7e8ff;
+    border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>استبانة إدمان الهاتف الذكي وجودة النوم</h2>
+
+<form id="surveyForm">
+
+<h3>أولاً: مقياس إدمان الهاتف الذكي</h3>
+
+<script>
+const phoneQuestions = [
+"أهمل بعض الأعمال بسبب استخدام الهاتف",
+"أجد صعوبة في التركيز أثناء الدراسة أو المحاضرة بسبب الهاتف",
+"أشعر بألم في المعصم أو الرقبة أثناء استخدام الهاتف",
+"أشعر بالتوتر عندما لا أكون ممسكًا بالهاتف",
+"أفكر في الهاتف حتى عندما لا أستخدمه",
+"أقضي وقتًا أطول مما خططت له في استخدام الهاتف",
+"يخبرني من حولي أنني أستخدم الهاتف كثيرًا",
+"أستخدم الهاتف لفترة أطول مما كنت أنوي",
+"أستخدم الهاتف للهروب من المشاعر السلبية أو الواقع",
+"أشعر بالقلق عندما أكون بدون الهاتف"
+];
+</script>
+
+<div id="phoneArea"></div>
+
+<h3>ثانياً: مقياس بيتسبرغ لجودة النوم (PSQI)</h3>
+
+<div id="psqiArea"></div>
+
+<br>
+<button type="button" onclick="calculate()">عرض النتيجة</button>
+
+<div class="result" id="result"></div>
+
+</form>
+</div>
+
+<script>
+// --- بناء الأسئلة تلقائياً ---
+function buildQuestions() {
+    // Phone addiction
+    let phoneHTML = "";
+    phoneQuestions.forEach((q, i)=> {
+        phoneHTML += `
+        <div class="question">
+        <label>PH${i+1} – ${q}</label><br>
+        <select id="PH${i+1}">
+            <option value="1">1 – أعارض بشدة</option>
+            <option value="2">2 – أعارض</option>
+            <option value="3">3 – محايد</option>
+            <option value="4">4 – أوافق</option>
+            <option value="5">5 – أوافق بشدة</option>
+        </select>
+        </div>`;
+    });
+    document.getElementById("phoneArea").innerHTML = phoneHTML;
+
+    // PSQI
+    let psqiHTML = `
+    <div class="question">
+        <label>PSQI1 – جودة النوم العامة</label><br>
+        <select id="PSQI1">
+            <option value="0">0 – ممتاز</option>
+            <option value="1">1 – جيد</option>
+            <option value="2">2 – سيئ</option>
+            <option value="3">3 – سيئ جدًا</option>
+        </select>
+    </div>
+
+    <div class="question">
+        <label>PSQI2A – كم دقيقة تحتاج لتغفو؟</label><br>
+        <input type="number" id="PSQI2A">
+    </div>
+
+    <div class="question">
+        <label>PSQI2B – صعوبة النوم خلال 30 دقيقة</label><br>
+        <select id="PSQI2B">
+            <option value="0">0 – لم يحدث</option>
+            <option value="1">1 – أقل من مرة أسبوعيًا</option>
+            <option value="2">2 – مرة أو مرتين أسبوعيًا</option>
+            <option value="3">3 – ثلاث مرات أو أكثر أسبوعيًا</option>
+        </select>
+    </div>
+
+    <div class="question">
+        <label>PSQI3 – عدد ساعات النوم الفعلية</label><br>
+        <input type="number" id="PSQI3">
+    </div>
+
+    <div class="question">
+        <label>PSQI4A – وقت الذهاب إلى السرير</label><br>
+        <input type="time" id="PSQI4A">
+        <br><label>PSQI4B – وقت الاستيقاظ</label><br>
+        <input type="time" id="PSQI4B">
+    </div>
+
+    <h4><b>اضطرابات النوم</b></h4>
+    `;
+
+    const items = ["A","B","C","D","E","F","G"];
+    const labels = [
+        "الاستيقاظ أثناء الليل أو الصباح الباكر",
+        "الحاجة لاستخدام الحمام",
+        "صعوبة في التنفس",
+        "السعال أو الشخير",
+        "البرد أو الحر الشديد",
+        "الأحلام المزعجة",
+        "الألم"
+    ];
+
+    items.forEach((it,i)=>{
+        psqiHTML += `
+        <div class="question">
+        <label>PSQI5${it} – ${labels[i]}</label><br>
+        <select id="PSQI5${it}">
+            <option value="0">0 – لم يحدث</option>
+            <option value="1">1 – أقل من مرة أسبوعيًا</option>
+            <option value="2">2 – مرة أو مرتين أسبوعيًا</option>
+            <option value="3">3 – ثلاث مرات أو أكثر أسبوعيًا</option>
+        </select>
+        </div>`;
+    });
+
+    psqiHTML += `
+    <div class="question">
+        <label>PSQI6 – استخدام أدوية النوم</label><br>
+        <select id="PSQI6">
+            <option value="0">0 – لم يحدث</option>
+            <option value="1">1 – أقل من مرة أسبوعيًا</option>
+            <option value="2">2 – مرة أو مرتين أسبوعيًا</option>
+            <option value="3">3 – ثلاث مرات أو أكثر أسبوعيًا</option>
+        </select>
+    </div>
+
+    <div class="question">
+        <label>PSQI7A – صعوبة البقاء مستيقظًا</label><br>
+        <select id="PSQI7A">
+            <option value="0">0 – لا مشكلة</option>
+            <option value="1">1 – مشكلة خفيفة</option>
+            <option value="2">2 – مشكلة متوسطة</option>
+            <option value="3">3 – مشكلة كبيرة جدًا</option>
+        </select>
+    </div>
+
+    <div class="question">
+        <label>PSQI7B – مشكلة في الحماس للقيام بالمهام</label><br>
+        <select id="PSQI7B">
+            <option value="0">0 – لا مشكلة</option>
+            <option value="1">1 – مشكلة خفيفة</option>
+            <option value="2">2 – مشكلة متوسطة</option>
+            <option value="3">3 – مشكلة كبيرة جدًا</option>
+        </select>
+    </div>
+    `;
+
+    document.getElementById("psqiArea").innerHTML = psqiHTML;
+}
+
+// --- حساب النتائج ---
+function calculate() {
+    let phoneScore = 0;
+    for (let i = 1; i <= 10; i++) {
+        phoneScore += parseInt(document.getElementById("PH"+i).value);
+    }
+
+    let psqi = 0;
+    for (let id of ["PSQI1","PSQI2B","PSQI6","PSQI7A","PSQI7B"]) {
+        psqi += parseInt(document.getElementById(id).value);
+    }
+    // + اضطرابات النوم 7 بنود
+    const items = ["A","B","C","D","E","F","G"];
+    items.forEach(it=>{
+        psqi += parseInt(document.getElementById("PSQI5"+it).value);
+    });
+
+    document.getElementById("result").innerHTML =
+        "<b>نتيجة إدمان الهاتف:</b> " + phoneScore +
+        "<br><b>نتيجة PSQI:</b> " + psqi + " / 21";
+}
+
+buildQuestions();
+</script>
+
+</body>
+</html>
