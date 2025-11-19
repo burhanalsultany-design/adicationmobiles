@@ -189,7 +189,7 @@ a.subscribe {
 <label><input type="radio" name="sleep4" value="3"> أقل من 5 ساعات</label>
 </div>
 
-<div class="question">5. كم مرة واجهت مشاكل في النوم بسبب اضطرابات مختلفة (استيقاظ، حاجة للحمام، أحلام مزعجة، ألم)؟</div>
+<div class="question">5. كم مرة واجهت مشاكل في النوم بسبب اضطرابات مختلفة؟</div>
 <div class="options">
 <label><input type="radio" name="sleep5" value="0" required> لم يحدث</label>
 <label><input type="radio" name="sleep5" value="1"> مرة واحدة أسبوعيًا</label>
@@ -221,7 +221,7 @@ a.subscribe {
 <a class="subscribe" href="https://script.google.com/macros/s/AKfycbxYTCcpvnUqWLlQ1_XlebFmWYuaEvcPwdc8TElffM-pIknh3mYEprraa957hNrysEkCLA/exec" target="_blank">اشترك في التحديثات</a>
 
 <script>
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzEa9iZqY0K-iCW5ZWugXnd1V7yXfWM-9zsY0VNIjATWLThGiXv3eohYgCtZ0h-nXbl2w/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxYTCcpvnUqWLlQ1_XlebFmWYuaEvcPwdc8TElffM-pIknh3mYEprraa957hNrysEkCLA/exec";
 
 document.getElementById("surveyForm").addEventListener("submit", function(e){
     e.preventDefault();
@@ -252,13 +252,13 @@ document.getElementById("surveyForm").addEventListener("submit", function(e){
         "نتيجة إدمان الهاتف: " + resultText + "<br>" +
         "نتيجة جودة النوم: " + sleepText;
 
-    // إرسال الردود إلى Google Sheets
+    // إرسال الردود إلى Google Sheets مع headers
     fetch(WEB_APP_URL, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            mqa: "SAS-SV + PSQI",
-            total: total,
-            sleepTotal: sleepTotal,
+            SAS_SV: total,
+            PSQI: sleepTotal,
             resultText: resultText + " | " + sleepText
         })
     })
