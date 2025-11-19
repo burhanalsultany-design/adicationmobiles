@@ -2,351 +2,271 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>استبيان إدمان الهاتف وجودة النوم</title>
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #f0f8ff, #e6f2ff);
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
     color: #333;
-    margin: 0;
-    padding: 0;
-}
-.container {
-    max-width: 900px;
-    margin: 30px auto;
     padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
-h2 {
+h1, h2 {
     text-align: center;
-    color: #004080;
+    color: #fff;
+}
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 900px;
+    margin: auto;
 }
 .question {
-    margin: 15px 0;
+    margin-bottom: 15px;
 }
-.options {
-    display: flex;
-    gap: 15px;
-    margin-top: 5px;
+.options label {
+    margin-right: 15px;
+    display: inline-block;
 }
 button {
-    background-color: #004080;
-    color: white;
+    background-color: #2193b0;
+    color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
 }
 button:hover {
-    background-color: #0066cc;
+    background-color: #6dd5ed;
 }
-.result {
-    margin-top: 15px;
-    font-size: 20px;
+#result {
+    margin-top: 20px;
     font-weight: bold;
-    color: #cc0000;
-}
-.subscribe {
-    margin-top: 30px;
     text-align: center;
+    font-size: 1.2em;
+    color: #fff;
 }
-.subscribe a {
-    background-color: #008000;
-    color: white;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 16px;
-}
-.subscribe a:hover {
-    background-color: #00b300;
+a.subscribe {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    text-decoration: underline;
 }
 </style>
 </head>
 <body>
 
-<div class="container">
-<h2>استبيان إدمان الهاتف (SAS-SV)</h2>
-<form id="smartphoneForm">
+<h1>استبيان إدمان الهاتف وجودة النوم</h1>
+<form id="surveyForm">
 
-  <div class="question">
-    1. أُهمِل بعض الأعمال المخططة بسبب استخدامي للهاتف الذكي.
-    <div class="options">
-      <label><input type="radio" name="q1" value="1">1</label>
-      <label><input type="radio" name="q1" value="2">2</label>
-      <label><input type="radio" name="q1" value="3">3</label>
-      <label><input type="radio" name="q1" value="4">4</label>
-      <label><input type="radio" name="q1" value="5">5</label>
-    </div>
-  </div>
+<h2>مقياس إدمان الهاتف SAS-SV</h2>
 
-  <div class="question">
-    2. أجد صعوبة في التركيز أثناء الدراسة أو المحاضرة بسبب استخدام الهاتف.
-    <div class="options">
-      <label><input type="radio" name="q2" value="1">1</label>
-      <label><input type="radio" name="q2" value="2">2</label>
-      <label><input type="radio" name="q2" value="3">3</label>
-      <label><input type="radio" name="q2" value="4">4</label>
-      <label><input type="radio" name="q2" value="5">5</label>
-    </div>
-  </div>
+<!-- أسئلة SAS-SV كاملة (10 أسئلة) -->
+<div class="question">1. أُهمِل بعض الأعمال المخططة بسبب استخدامي للهاتف الذكي.</div>
+<div class="options">
+<label><input type="radio" name="q1" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q1" value="2"> لا أوافق</label>
+<label><input type="radio" name="q1" value="3"> محايد</label>
+<label><input type="radio" name="q1" value="4"> أوافق</label>
+<label><input type="radio" name="q1" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    3. أشعر بألم في المعصم أو الرقبة أثناء استخدام الهاتف.
-    <div class="options">
-      <label><input type="radio" name="q3" value="1">1</label>
-      <label><input type="radio" name="q3" value="2">2</label>
-      <label><input type="radio" name="q3" value="3">3</label>
-      <label><input type="radio" name="q3" value="4">4</label>
-      <label><input type="radio" name="q3" value="5">5</label>
-    </div>
-  </div>
+<div class="question">2. أجد صعوبة في التركيز أثناء الدراسة أو المحاضرة بسبب استخدام الهاتف.</div>
+<div class="options">
+<label><input type="radio" name="q2" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q2" value="2"> لا أوافق</label>
+<label><input type="radio" name="q2" value="3"> محايد</label>
+<label><input type="radio" name="q2" value="4"> أوافق</label>
+<label><input type="radio" name="q2" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    4. أشعر بالتوتر عندما لا أكون ممسكًا بالهاتف.
-    <div class="options">
-      <label><input type="radio" name="q4" value="1">1</label>
-      <label><input type="radio" name="q4" value="2">2</label>
-      <label><input type="radio" name="q4" value="3">3</label>
-      <label><input type="radio" name="q4" value="4">4</label>
-      <label><input type="radio" name="q4" value="5">5</label>
-    </div>
-  </div>
+<div class="question">3. أشعر بألم في المعصم أو الرقبة أثناء استخدام الهاتف.</div>
+<div class="options">
+<label><input type="radio" name="q3" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q3" value="2"> لا أوافق</label>
+<label><input type="radio" name="q3" value="3"> محايد</label>
+<label><input type="radio" name="q3" value="4"> أوافق</label>
+<label><input type="radio" name="q3" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    5. أفكر في الهاتف حتى عندما لا أستخدمه.
-    <div class="options">
-      <label><input type="radio" name="q5" value="1">1</label>
-      <label><input type="radio" name="q5" value="2">2</label>
-      <label><input type="radio" name="q5" value="3">3</label>
-      <label><input type="radio" name="q5" value="4">4</label>
-      <label><input type="radio" name="q5" value="5">5</label>
-    </div>
-  </div>
+<div class="question">4. أشعر بالتوتر عندما لا أكون ممسكًا بالهاتف.</div>
+<div class="options">
+<label><input type="radio" name="q4" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q4" value="2"> لا أوافق</label>
+<label><input type="radio" name="q4" value="3"> محايد</label>
+<label><input type="radio" name="q4" value="4"> أوافق</label>
+<label><input type="radio" name="q4" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    6. أقضي وقتًا أطول مما خططت له في استخدام الهاتف.
-    <div class="options">
-      <label><input type="radio" name="q6" value="1">1</label>
-      <label><input type="radio" name="q6" value="2">2</label>
-      <label><input type="radio" name="q6" value="3">3</label>
-      <label><input type="radio" name="q6" value="4">4</label>
-      <label><input type="radio" name="q6" value="5">5</label>
-    </div>
-  </div>
+<div class="question">5. أفكر في الهاتف حتى عندما لا أستخدمه.</div>
+<div class="options">
+<label><input type="radio" name="q5" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q5" value="2"> لا أوافق</label>
+<label><input type="radio" name="q5" value="3"> محايد</label>
+<label><input type="radio" name="q5" value="4"> أوافق</label>
+<label><input type="radio" name="q5" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    7. يخبرني من حولي أنني أستخدم الهاتف كثيرًا.
-    <div class="options">
-      <label><input type="radio" name="q7" value="1">1</label>
-      <label><input type="radio" name="q7" value="2">2</label>
-      <label><input type="radio" name="q7" value="3">3</label>
-      <label><input type="radio" name="q7" value="4">4</label>
-      <label><input type="radio" name="q7" value="5">5</label>
-    </div>
-  </div>
+<div class="question">6. أقضي وقتًا أطول مما خططت له في استخدام الهاتف.</div>
+<div class="options">
+<label><input type="radio" name="q6" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q6" value="2"> لا أوافق</label>
+<label><input type="radio" name="q6" value="3"> محايد</label>
+<label><input type="radio" name="q6" value="4"> أوافق</label>
+<label><input type="radio" name="q6" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    8. أستخدم الهاتف لفترة أطول مما كنت أنوي.
-    <div class="options">
-      <label><input type="radio" name="q8" value="1">1</label>
-      <label><input type="radio" name="q8" value="2">2</label>
-      <label><input type="radio" name="q8" value="3">3</label>
-      <label><input type="radio" name="q8" value="4">4</label>
-      <label><input type="radio" name="q8" value="5">5</label>
-    </div>
-  </div>
+<div class="question">7. يخبرني من حولي أنني أستخدم الهاتف كثيرًا.</div>
+<div class="options">
+<label><input type="radio" name="q7" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q7" value="2"> لا أوافق</label>
+<label><input type="radio" name="q7" value="3"> محايد</label>
+<label><input type="radio" name="q7" value="4"> أوافق</label>
+<label><input type="radio" name="q7" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    9. أستخدم الهاتف للهروب من المشاعر السلبية أو الواقع.
-    <div class="options">
-      <label><input type="radio" name="q9" value="1">1</label>
-      <label><input type="radio" name="q9" value="2">2</label>
-      <label><input type="radio" name="q9" value="3">3</label>
-      <label><input type="radio" name="q9" value="4">4</label>
-      <label><input type="radio" name="q9" value="5">5</label>
-    </div>
-  </div>
+<div class="question">8. أستخدم الهاتف لفترة أطول مما كنت أنوي.</div>
+<div class="options">
+<label><input type="radio" name="q8" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q8" value="2"> لا أوافق</label>
+<label><input type="radio" name="q8" value="3"> محايد</label>
+<label><input type="radio" name="q8" value="4"> أوافق</label>
+<label><input type="radio" name="q8" value="5"> أوافق بشدة</label>
+</div>
 
-  <div class="question">
-    10. أشعر بالقلق عندما أكون بدون الهاتف.
-    <div class="options">
-      <label><input type="radio" name="q10" value="1">1</label>
-      <label><input type="radio" name="q10" value="2">2</label>
-      <label><input type="radio" name="q10" value="3">3</label>
-      <label><input type="radio" name="q10" value="4">4</label>
-      <label><input type="radio" name="q10" value="5">5</label>
-    </div>
-  </div>
+<div class="question">9. أستخدم الهاتف للهروب من المشاعر السلبية أو الواقع.</div>
+<div class="options">
+<label><input type="radio" name="q9" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q9" value="2"> لا أوافق</label>
+<label><input type="radio" name="q9" value="3"> محايد</label>
+<label><input type="radio" name="q9" value="4"> أوافق</label>
+<label><input type="radio" name="q9" value="5"> أوافق بشدة</label>
+</div>
 
-  <button type="submit">إرسال إدمان الهاتف</button>
+<div class="question">10. أشعر بالقلق عندما أكون بدون الهاتف.</div>
+<div class="options">
+<label><input type="radio" name="q10" value="1" required> بشدة لا أوافق</label>
+<label><input type="radio" name="q10" value="2"> لا أوافق</label>
+<label><input type="radio" name="q10" value="3"> محايد</label>
+<label><input type="radio" name="q10" value="4"> أوافق</label>
+<label><input type="radio" name="q10" value="5"> أوافق بشدة</label>
+</div>
+
+<h2>مقياس جودة النوم PSQI</h2>
+
+<!-- أسئلة PSQI 7 مكونات -->
+<div class="question">1. كيف تُقيّم جودة نومك بشكل عام؟</div>
+<div class="options">
+<label><input type="radio" name="sleep1" value="0" required> ممتاز</label>
+<label><input type="radio" name="sleep1" value="1"> جيد</label>
+<label><input type="radio" name="sleep1" value="2"> سيئ</label>
+<label><input type="radio" name="sleep1" value="3"> سيئ جدًا</label>
+</div>
+
+<div class="question">2. كم دقيقة يستغرقك عادةً لتغفو كل ليلة؟</div>
+<div class="options">
+<label><input type="radio" name="sleep2" value="0" required> أقل من 15 دقيقة</label>
+<label><input type="radio" name="sleep2" value="1"> 15–30 دقيقة</label>
+<label><input type="radio" name="sleep2" value="2"> 31–60 دقيقة</label>
+<label><input type="radio" name="sleep2" value="3"> أكثر من 60 دقيقة</label>
+</div>
+
+<div class="question">3. كم مرة واجهت صعوبة في النوم خلال 30 دقيقة من الاستلقاء؟</div>
+<div class="options">
+<label><input type="radio" name="sleep3" value="0" required> لم يحدث</label>
+<label><input type="radio" name="sleep3" value="1"> أقل من مرة أسبوعيًا</label>
+<label><input type="radio" name="sleep3" value="2"> مرة أو مرتين أسبوعيًا</label>
+<label><input type="radio" name="sleep3" value="3"> ثلاث مرات أو أكثر أسبوعيًا</label>
+</div>
+
+<div class="question">4. كم عدد ساعات النوم الفعلية التي تحصل عليها في الليلة؟</div>
+<div class="options">
+<label><input type="radio" name="sleep4" value="0" required> أكثر من 7 ساعات</label>
+<label><input type="radio" name="sleep4" value="1"> 6–7 ساعات</label>
+<label><input type="radio" name="sleep4" value="2"> 5–6 ساعات</label>
+<label><input type="radio" name="sleep4" value="3"> أقل من 5 ساعات</label>
+</div>
+
+<div class="question">5. كم مرة واجهت مشاكل في النوم بسبب اضطرابات مختلفة (استيقاظ، حاجة للحمام، أحلام مزعجة، ألم)؟</div>
+<div class="options">
+<label><input type="radio" name="sleep5" value="0" required> لم يحدث</label>
+<label><input type="radio" name="sleep5" value="1"> مرة واحدة أسبوعيًا</label>
+<label><input type="radio" name="sleep5" value="2"> مرتين أسبوعيًا</label>
+<label><input type="radio" name="sleep5" value="3"> ثلاث مرات أو أكثر أسبوعيًا</label>
+</div>
+
+<div class="question">6. كم مرة تناولت دواءً لمساعدتك على النوم؟</div>
+<div class="options">
+<label><input type="radio" name="sleep6" value="0" required> لم يحدث</label>
+<label><input type="radio" name="sleep6" value="1"> مرة واحدة أسبوعيًا</label>
+<label><input type="radio" name="sleep6" value="2"> مرتين أسبوعيًا</label>
+<label><input type="radio" name="sleep6" value="3"> ثلاث مرات أو أكثر أسبوعيًا</label>
+</div>
+
+<div class="question">7. كم مرة واجهت صعوبة في البقاء مستيقظًا خلال الأنشطة النهارية؟</div>
+<div class="options">
+<label><input type="radio" name="sleep7" value="0" required> لم يحدث</label>
+<label><input type="radio" name="sleep7" value="1"> مرة واحدة أسبوعيًا</label>
+<label><input type="radio" name="sleep7" value="2"> مرتين أسبوعيًا</label>
+<label><input type="radio" name="sleep7" value="3"> ثلاث مرات أو أكثر أسبوعيًا</label>
+</div>
+
+<button type="submit">إرسال</button>
 </form>
-<p class="result" id="smartphoneResult"></p>
-</div>
 
-<div class="container">
-<h2>استبيان جودة النوم (PSQI)</h2>
-<form id="sleepForm">
+<div id="result"></div>
 
-<div class="question">
-  1. خلال الشهر الماضي، كيف تُقيّم جودة نومك بشكل عام؟
-  <div class="options">
-    <label><input type="radio" name="sq1" value="0">ممتاز</label>
-    <label><input type="radio" name="sq1" value="1">جيد</label>
-    <label><input type="radio" name="sq1" value="2">سيئ</label>
-    <label><input type="radio" name="sq1" value="3">سيئ جدًا</label>
-  </div>
-</div>
-
-<div class="question">
-  2. كم دقيقة يستغرقك عادةً لتغفو كل ليلة؟
-  <div class="options">
-    <label><input type="radio" name="sq2" value="0">0–15</label>
-    <label><input type="radio" name="sq2" value="1">16–30</label>
-    <label><input type="radio" name="sq2" value="2">31–60</label>
-    <label><input type="radio" name="sq2" value="3">أكثر من 60</label>
-  </div>
-</div>
-
-<div class="question">
-  3. كم مرة واجهت صعوبة في النوم خلال 30 دقيقة؟
-  <div class="options">
-    <label><input type="radio" name="sq3" value="0">لم يحدث</label>
-    <label><input type="radio" name="sq3" value="1">أقل من مرة أسبوعيًا</label>
-    <label><input type="radio" name="sq3" value="2">مرة أو مرتين أسبوعيًا</label>
-    <label><input type="radio" name="sq3" value="3">ثلاث مرات أو أكثر أسبوعيًا</label>
-  </div>
-</div>
-
-<div class="question">
-  4. كم عدد ساعات النوم الفعلية التي تحصل عليها في الليلة؟
-  <div class="options">
-    <label><input type="radio" name="sq4" value="0">< 5 ساعات</label>
-    <label><input type="radio" name="sq4" value="1">5–6 ساعات</label>
-    <label><input type="radio" name="sq4" value="2">6–7 ساعات</label>
-    <label><input type="radio" name="sq4" value="3">> 7 ساعات</label>
-  </div>
-</div>
-
-<div class="question">
-  5. في أي وقت عادةً تذهب إلى السرير؟
-  <div class="options">
-    <label><input type="radio" name="sq5" value="0">قبل 22:00</label>
-    <label><input type="radio" name="sq5" value="1">22:00–23:00</label>
-    <label><input type="radio" name="sq5" value="2">23:00–00:00</label>
-    <label><input type="radio" name="sq5" value="3">بعد 00:00</label>
-  </div>
-</div>
-
-<div class="question">
-  6. وفي أي وقت عادةً تستيقظ صباحًا؟
-  <div class="options">
-    <label><input type="radio" name="sq6" value="0">قبل 06:00</label>
-    <label><input type="radio" name="sq6" value="1">06:00–07:00</label>
-    <label><input type="radio" name="sq6" value="2">07:00–08:00</label>
-    <label><input type="radio" name="sq6" value="3">بعد 08:00</label>
-  </div>
-</div>
-
-<div class="question">
-  7. خلال الشهر الماضي، كم مرة واجهت مشاكل في النوم بسبب اضطرابات؟
-  <div class="options">
-    <label><input type="radio" name="sq7" value="0">لم يحدث</label>
-    <label><input type="radio" name="sq7" value="1">أقل من مرة أسبوعيًا</label>
-    <label><input type="radio" name="sq7" value="2">مرة أو مرتين أسبوعيًا</label>
-    <label><input type="radio" name="sq7" value="3">ثلاث مرات أو أكثر أسبوعيًا</label>
-  </div>
-</div>
-
-<div class="question">
-  8. كم مرة تناولت دواءً لمساعدتك على النوم؟
-  <div class="options">
-    <label><input type="radio" name="sq8" value="0">لم يحدث</label>
-    <label><input type="radio" name="sq8" value="1">أقل من مرة أسبوعيًا</label>
-    <label><input type="radio" name="sq8" value="2">مرة أو مرتين أسبوعيًا</label>
-    <label><input type="radio" name="sq8" value="3">ثلاث مرات أو أكثر أسبوعيًا</label>
-  </div>
-</div>
-
-<div class="question">
-  9. كم مرة واجهت صعوبة في البقاء مستيقظًا خلال النشاطات؟
-  <div class="options">
-    <label><input type="radio" name="sq9" value="0">لم يحدث</label>
-    <label><input type="radio" name="sq9" value="1">أقل من مرة أسبوعيًا</label>
-    <label><input type="radio" name="sq9" value="2">مرة أو مرتين أسبوعيًا</label>
-    <label><input type="radio" name="sq9" value="3">ثلاث مرات أو أكثر أسبوعيًا</label>
-  </div>
-</div>
-
-<div class="question">
-  10. إلى أي مدى كانت لديك مشكلة في الحفاظ على الحماس لإنجاز الأمور؟
-  <div class="options">
-    <label><input type="radio" name="sq10" value="0">لا مشكلة</label>
-    <label><input type="radio" name="sq10" value="1">مشكلة بسيطة</label>
-    <label><input type="radio" name="sq10" value="2">مشكلة متوسطة</label>
-    <label><input type="radio" name="sq10" value="3">مشكلة كبيرة جدًا</label>
-  </div>
-</div>
-
-<button type="submit">إرسال جودة النوم</button>
-</form>
-<p class="result" id="sleepResult"></p>
-</div>
-
-<div class="subscribe">
-  <a href="https://script.google.com/macros/s/AKfycbzEa9iZqY0K-iCW5ZWugXnd1V7yXfWM-9zsY0VNIjATWLThGiXv3eohYgCtZ0h-nXbl2w/exec">
-    اشترك لمتابعة النتائج
-  </a>
-</div>
+<a class="subscribe" href="https://script.google.com/macros/s/AKfycbxYTCcpvnUqWLlQ1_XlebFmWYuaEvcPwdc8TElffM-pIknh3mYEprraa957hNrysEkCLA/exec" target="_blank">اشترك في التحديثات</a>
 
 <script>
-const WEB_APP_URL = "PUT_YOUR_WEB_APP_URL_HERE"; // ضع هنا رابط Web App الصحيح
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxYTCcpvnUqWLlQ1_XlebFmWYuaEvcPwdc8TElffM-pIknh3mYEprraa957hNrysEkCLA/exec";
 
-// مقياس الهاتف
-document.getElementById("smartphoneForm").addEventListener("submit", function(e){
+document.getElementById("surveyForm").addEventListener("submit", function(e){
     e.preventDefault();
+    const form = e.target;
+
+    // حساب نقاط SAS-SV
     let total = 0;
     for(let i=1;i<=10;i++){
-        const val = document.querySelector('input[name="q'+i+'"]:checked');
-        if(val) total += parseInt(val.value);
+        total += parseInt(form["q"+i].value);
     }
     let resultText = "";
-    if(total <= 30) resultText = "استخدام طبيعي للهاتف";
-    else if(total <= 35) resultText = "استخدام مرتفع للهاتف";
-    else resultText = "إدمان على الهاتف";
-    document.getElementById("smartphoneResult").innerText = resultText;
+    if(total >= 31){ resultText = "انت مصاب بإدمان الهاتف!"; }
+    else if(total >= 10){ resultText = "لديك ميل لإدمان الهاتف"; }
+    else{ resultText = "استخدام الهاتف طبيعي"; }
 
-    fetch(WEB_APP_URL,{
-        method:"POST",
-        headers:{"Content-Type":"text/plain;charset=utf-8"},
-        body: JSON.stringify({mqa:"SAS-SV", total:total, resultText:resultText})
-    });
-});
-
-// مقياس النوم
-document.getElementById("sleepForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    let total = 0;
-    for(let i=1;i<=10;i++){
-        const val = document.querySelector('input[name="sq'+i+'"]:checked');
-        if(val) total += parseInt(val.value);
+    // حساب نقاط PSQI
+    let sleepTotal = 0;
+    for(let i=1;i<=7;i++){
+        sleepTotal += parseInt(form["sleep"+i].value);
     }
-    let resultText = "";
-    if(total <= 4) resultText = "نوم جيد جدًا";
-    else if(total <= 9) resultText = "نوم متوسط الجودة";
-    else if(total <= 14) resultText = "نوم ضعيف";
-    else resultText = "اضطراب نوم شديد";
-    document.getElementById("sleepResult").innerText = resultText;
+    let sleepText = "";
+    if(sleepTotal >= 15){ sleepText = "اضطراب نوم شديد"; }
+    else if(sleepTotal >= 10){ sleepText = "نوم ضعيف"; }
+    else if(sleepTotal >= 5){ sleepText = "نوم متوسط الجودة"; }
+    else{ sleepText = "نوم جيد جدًا"; }
 
-    fetch(WEB_APP_URL,{
-        method:"POST",
-        headers:{"Content-Type":"text/plain;charset=utf-8"},
-        body: JSON.stringify({mqa:"PSQI", total:total, resultText:resultText})
-    });
+    document.getElementById("result").innerHTML = 
+        "نتيجة إدمان الهاتف: " + resultText + "<br>" +
+        "نتيجة جودة النوم: " + sleepText;
+
+    // إرسال الردود إلى Google Sheets
+    fetch(WEB_APP_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            mqa: "SAS-SV + PSQI",
+            total: total,
+            sleepTotal: sleepTotal,
+            resultText: resultText + " | " + sleepText
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log("تم الإرسال:", data))
+    .catch(err => console.error("خطأ في الإرسال:", err));
 });
 </script>
+
 </body>
 </html>
