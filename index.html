@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>استبيان ادمان الهواتف وجودة النوم</title>
+<style>
+body {
+    font-family: "Tahoma", sans-serif;
+    background: linear-gradient(135deg, #8e9eab, #eef2f3);
+    text-align: center;
+    direction: rtl;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+h2 {
+    color: #00416A;
+}
+.question {
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+.options label {
+    margin: 0 7px;
+    padding: 6px 10px;
+    display: inline-block;
+    background: #dce3e8;
+    border-radius: 6px;
+    cursor: pointer;
+}
+button {
+    padding: 10px 20px;
+    background: #005C97;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+button:hover {
+    background: #003e65;
+}
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #b30000;
+}
+.footer {
+    margin-top: 20px;
+}
+a {
+    color: #007bff;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>📱 مقياس إدمان الهواتف الذكية</h2>
+
+<form id="surveyForm">
+<div class="question">1. أقضي وقتًا على الهاتف أكثر مما أنوي.</div>
+<div class="options">
+<label><input type="radio" name="q1" value="1"> ابداً</label>
+<label><input type="radio" name="q1" value="2"> قليلاً</label>
+<label><input type="radio" name="q1" value="3"> أحياناً</label>
+<label><input type="radio" name="q1" value="4"> غالباً</label>
+<label><input type="radio" name="q1" value="5"> دائماً</label>
+</div>
+
+<h2>😴 مقياس جودة النوم (PSQI)</h2>
+
+<div class="question">2. أشعر بصعوبة في النوم أو الاستمرار بالنوم.</div>
+<div class="options">
+<label><input type="radio" name="p1" value="1"> ابداً</label>
+<label><input type="radio" name="p1" value="2"> قليلاً</label>
+<label><input type="radio" name="p1" value="3"> أحياناً</label>
+<label><input type="radio" name="p1" value="4"> غالباً</label>
+<label><input type="radio" name="p1" value="5"> دائماً</label>
+</div>
+
+<button type="button" onclick="calculate()">إرسال النتيجة</button>
+</form>
+
+<div id="result"></div>
+
+<div class="footer">
+🔔 اشترك لتصلك أدوات بحث جديدة:  
+<a target="_blank" href="https://script.google.com/macros/s/AKfycbxYTCcpvnUqWLlQ1_XlebFmWYuaEvcPwdc8TElffM-pIknh3mYEprraa957hNrysEkCLA/exec">اضغط هنا للاشتراك</a>
+</div>
+
+</div>
+
+<script>
+// 🔗 ضع رابط Web App هنا ↓↓↓
+const WEB_APP_URL = "ضع هنا رابط الويب آب من Google Script";
+
+function calculate() {
+    const q1 = parseInt(document.querySelector('input[name="q1"]:checked')?.value || 0);
+    const p1 = parseInt(document.querySelector('input[name="p1"]:checked')?.value || 0);
+
+    if(q1 === 0 || p1 === 0) {
+        alert("🚫 يرجى الإجابة على جميع الأسئلة");
+        return;
+    }
+
+    let phoneText = (q1 >= 4) ? "⚠️ لديك احتمال إدمان على الهاتف" : "👍 استخدام طبيعي للهاتف";
+    let sleepText = (p1 >= 4) ? "😟 لديك ضعف في جودة النوم" : "😴 نومك طبيعي";
+
+    document.getElementById("result").innerHTML = phoneText + "<br>" + sleepText;
+
+    // إرسال الردود إلى Google Sheets
+    fetch(WEB_APP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            phone_addiction: q1,
+            sleep_quality: p1,
+            result: phoneText + " - " + sleepText
+        })
+    })
+    .then(res => res.text())
+    .then(res => console.log("تم الإرسال:", res))
+    .catch(err => alert("⚠️ لم يتم إرسال الرد إلى Google Sheet"));
+}
+</script>
+
+</body>
+</html>
